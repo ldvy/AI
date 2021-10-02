@@ -55,7 +55,7 @@ model = Sequential()
 # Input layer with rectified linear unit activation function
 model.add(Dense(18, activation='relu', input_shape=(11,)))
 # Output layer with sigmoid activation function
-model.add(Dense(1, activation='sigmoid'))
+model.add(Dense(1, activation='linear'))
 
 # Compiling and fitting the model
 model.compile(loss='binary_crossentropy',
@@ -63,9 +63,11 @@ model.compile(loss='binary_crossentropy',
               metrics=['accuracy'])
 model.summary()
 
-model.fit(data_train, label_train, epochs=20, batch_size=1, verbose=1)
+print("\nTraining")
+model.fit(data_train, label_train, epochs=10, batch_size=1, verbose=1)
 
 
 # ----- Testing the model -----
-test_loss, test_accuracy = model.evaluate(data_test, label_test, verbose=0)
+print("\nTesting")
+test_loss, test_accuracy = model.evaluate(data_test, label_test, verbose=1)
 print('\nTest Loss {}, Test Accuracy {}'.format(test_loss, test_accuracy))
